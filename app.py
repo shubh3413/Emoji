@@ -283,12 +283,13 @@ if(flag):
 
     tokens, tags, unks = tag_sentence(model_bilstm, device, text, TWEET, LABEL)
 
-    st.subheader("Text with Emoji inserted")
+    st.subheader("Text with Emoji Inserted")
     if(tags[len(tags) - 1] == '1' or '1' not in tags):
         inserted_text = inserter(text)
         st.text(inserted_text)
     else:
-        tokens_list = text.strip().split()
+        nlp = spacy.load('en_core_web_sm')
+        tokens_list = [token.text for token in nlp(text)]
         output = ""
         for i in range(len(tags)):
             output += tokens_list[i] + " "
