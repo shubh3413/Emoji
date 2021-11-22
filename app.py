@@ -257,7 +257,7 @@ if(flag):
 
     model_bilstm = model_bilstm.to(device)
 
-    model_bilstm.load_state_dict(torch.load('tut1-model.pt'))
+    model_bilstm.load_state_dict(torch.load('tut1-model.pt', map_location = "cpu"))
 
     def tag_sentence(model, device, sentence, text_field, tag_field):
         model.eval()
