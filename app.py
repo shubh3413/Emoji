@@ -9,7 +9,7 @@ import spacy
 import ast
 
 # specify GPU
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 
 st.sidebar.title("CS 613: Natural Language Processing")
 st.markdown(
@@ -105,7 +105,7 @@ def load_model():
     # pass the pre-trained BERT to our define architecture
     model = BERT_Arch(bert)
     path = "proposed_saved_weights_mc64_learning4_20epoch.pt"
-    model.load_state_dict(torch.load(path))
+    model.load_state_dict(torch.load(path, map_location = "cpu"))
 
     # push the model to GPU
     model = model.to(device)
